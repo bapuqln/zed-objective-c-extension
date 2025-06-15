@@ -1,0 +1,13 @@
+{
+  "Objective-C": {
+    "enable_language_server": true,
+    "language_servers": [
+      {
+        "name": "clangd",
+        "path": "/usr/bin/clangd",
+        "arguments": ["--background-index", "--clang-tidy"]
+      }
+    ],
+    "preferred_language_servers": ["clangd"]
+  }
+}

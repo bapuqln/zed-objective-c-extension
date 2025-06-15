@@ -1,0 +1,18 @@
+id = "objc"
+name = "Objective-C"
+version = "0.0.1"
+schema_version = 1
+authors = ["bapuwang7@gmail.com"]
+description = "Objective-C language support for Zed"
+repository = "https://github.com/bapuqln/zed-objective-c-extension"
+
+[grammars.objc]
+repository = "https://github.com/merico-dev/tree-sitter-objc"
+rev = "master"
+
+[language_servers.clangd]
+name = "clangd"
+languages = ["Objective-C"]
+
+[package.metadata.zed]
+language = "objc"

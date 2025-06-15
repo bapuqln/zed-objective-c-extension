@@ -1,0 +1,12 @@
+[package]
+name = "zed-objective-c-extension"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+zed_extension_api = "0.1"
+serde_json = "1.0"
+
+[lib]
+crate-type = ["cdylib"]
+path = "src/objective_c.rs"
