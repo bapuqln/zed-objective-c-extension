@@ -8,7 +8,7 @@ repository = "https://github.com/bapuqln/zed-objective-c-extension"
 
 [grammars.objc]
 repository = "https://github.com/merico-dev/tree-sitter-objc"
-rev = "master"
+rev = "2e87d715a35a6d87e6f7c5dd2e02fa73d8461df9"
 
 [language_servers.clangd]
 name = "clangd"
