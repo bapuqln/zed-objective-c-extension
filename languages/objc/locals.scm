@@ -32,4 +32,4 @@
 (category_implementation class_name: (_) name: (identifier) @some.other.capture)
 
 ; Line 17 - after change:
-(some_node_for_category random_field: (...) name: (identifier) @some.capture)
+; (some_node_for_category random_field: (...) name: (identifier) @some.capture)
