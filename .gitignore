@@ -1,0 +1,5 @@
+# Ignore grammars directory and extension.wasm
+
+# Compiled grammars and build artifacts
+/grammars/
+extension.wasm
