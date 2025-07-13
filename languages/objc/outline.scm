@@ -9,12 +9,9 @@
 ((protocol_declaration
   (identifier) @name)) @protocol
 
-((class_interface
-  (identifier) @class_name
-  category: (identifier) @category_name)) @category
+
 
 ((method_definition
-  (method_type)? @type
   (identifier) @name)) @method
 
 ((function_definition
