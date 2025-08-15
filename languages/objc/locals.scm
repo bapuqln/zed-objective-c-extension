@@ -1,33 +1,35 @@
 ;; 这是 locals.scm 文件的正确开头示例
 ;; 可以有注释
 
-;; 类接口
-((class_interface
-  (identifier) @name.class))
+(class_interface
+  name: (identifier) @name.class)
 
-;; 类别接口
-((class_interface
-  (identifier) @name.class
-  category: (identifier) @name.category))
+(category_interface
+  class_name: (identifier) @name.class
+  name: (identifier) @name.category) ; 注意这里使用 name:
 
-;; 协议声明
-((protocol_declaration
-  (identifier) @name.protocol))
+(protocol_declaration
+  name: (identifier) @name.protocol)
 
-;; 函数定义
-((function_definition
+(function_definition
   declarator: (function_declarator
-    declarator: (identifier) @name.function)))
+    declarator: (identifier) @name.function))
 
-;; 方法定义
-((method_definition
-  (identifier) @name.method))
+(method_definition
+  selector: [
+    (identifier) @name.method
+    (keyword_selector (keyword_argument keyword: (identifier)) @name.method)
+  ])
 
-;; 类别接口和实现
-((class_interface
-  (identifier) @class.name
-  category: (identifier) @category.name.outline))
+; 确保所有相关的查询都在这里，并且使用正确的字段名
+; 如果您的第 17 行（在清除了无效内容之后）仍然有问题：
+; (some_node_type ... category_name: (identifier) @capture) ; 错误行示例
+; 将其改为：
+; (some_node_type ... name: (identifier) @capture) ; 正确行示例
 
-((class_implementation
-  (identifier) @class.name
-  category: (identifier) @some.other.capture))
+; 您提供的有效 S-表达式部分：
+(category_interface class_name: (_) name: (identifier) @category.name.outline)
+(category_implementation class_name: (_) name: (identifier) @some.other.capture)
+
+; Line 17 - after change:
+(some_node_for_category random_field: (...) name: (identifier) @some.capture)

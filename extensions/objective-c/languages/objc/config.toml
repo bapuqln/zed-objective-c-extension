@@ -1,0 +1,24 @@
+
+name = "Objective-C" # 显示在 Zed UI 中的语言名称
+grammar = "objc" # 引用主 extension.toml 中定义的 grammar
+path_suffixes = ["m", "h", "mm"] # 与此语言关联的文件扩展名
+highlights = "highlights.scm" # 相对于 config.toml 文件的路径
+indents = "indents.scm" # 缩进查询文件
+outline = "outline.scm" # 代码大纲查询文件
+line_comments = ["// "]
+block_comment = ["/*", "*/"]
+autoclose_before = ")}]"
+brackets = [
+    { start = "{", end = "}", close = true, newline = true },
+    { start = "[", end = "]", close = true, newline = true },
+    { start = "(", end = ")", close = true, newline = true },
+    { start = "\"", end = "\"", close = true, newline = false, not_in = ["string"] },
+    { start = "'", end = "'", close = true, newline = false, not_in = ["string", "comment"] },
+    { start = "/*", end = " */", close = true, newline = false, not_in = ["string", "comment"] },
+]
+documentation = { start = "/*", end = "*/", prefix = "* ", tab_size = 1 }
+injections = "injections.scm"
+textobjects = "textobjects.scm"
+locals = "locals.scm"
+tags = "tags.scm"
+language_servers = ["clangd"]
