@@ -1,7 +1,9 @@
 use zed_extension_api::{
     self as zed,
     lsp::{Completion, Symbol},
-    serde_json, settings::LspSettings, CodeLabel, LanguageServerId, Result,
+    serde_json,
+    settings::LspSettings,
+    CodeLabel, LanguageServerId, Result,
 };
 
 #[derive(Default)]

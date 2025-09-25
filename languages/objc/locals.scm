@@ -1,35 +1,67 @@
-;; 这是 locals.scm 文件的正确开头示例
-;; 可以有注释
+;; Locals.scm for Objective-C
+;; Defines local scope bindings for variables, methods, classes, etc.
 
+;; Class definitions
 (class_interface
-  name: (identifier) @name.class)
+  name: (identifier) @name.definition.class) @scope
 
+(class_implementation
+  name: (identifier) @name.definition.class) @scope
+
+;; Category definitions
 (category_interface
-  class_name: (identifier) @name.class
-  name: (identifier) @name.category) ; 注意这里使用 name:
+  class_name: (identifier) @name.reference.class
+  name: (identifier) @name.definition.category) @scope
 
+(category_implementation
+  class_name: (identifier) @name.reference.class
+  name: (identifier) @name.definition.category) @scope
+
+;; Protocol definitions
 (protocol_declaration
-  name: (identifier) @name.protocol)
+  name: (identifier) @name.definition.protocol) @scope
 
-(function_definition
-  declarator: (function_declarator
-    declarator: (identifier) @name.function))
+;; Method definitions
+(method_definition
+  selector: (identifier) @name.definition.method) @scope
 
 (method_definition
-  selector: [
-    (identifier) @name.method
-    (keyword_selector (keyword_argument keyword: (identifier)) @name.method)
-  ])
+  selector: (keyword_selector) @name.definition.method) @scope
 
-; 确保所有相关的查询都在这里，并且使用正确的字段名
-; 如果您的第 17 行（在清除了无效内容之后）仍然有问题：
-; (some_node_type ... category_name: (identifier) @capture) ; 错误行示例
-; 将其改为：
-; (some_node_type ... name: (identifier) @capture) ; 正确行示例
+;; Function definitions
+(function_definition
+  declarator: (function_declarator
+    declarator: (identifier) @name.definition.function)) @scope
 
-; 您提供的有效 S-表达式部分：
-(category_interface class_name: (_) name: (identifier) @category.name.outline)
-(category_implementation class_name: (_) name: (identifier) @some.other.capture)
+;; Variable declarations
+(declaration
+  declarator: (identifier) @name.definition.variable)
 
-; Line 17 - after change:
-(some_node_for_category random_field: (...) name: (identifier) @some.capture)
+(declaration
+  declarator: (init_declarator
+    declarator: (identifier) @name.definition.variable))
+
+;; Parameter declarations
+(parameter_declaration
+  declarator: (identifier) @name.definition.parameter)
+
+(parameter_declaration
+  declarator: (pointer_declarator
+    declarator: (identifier) @name.definition.parameter))
+
+;; Property declarations
+(property_declaration
+  declarator: (identifier) @name.definition.property)
+
+;; Block scopes
+(compound_statement) @scope
+
+;; Control flow scopes
+(if_statement) @scope
+(for_statement) @scope
+(while_statement) @scope
+(do_statement) @scope
+(switch_statement) @scope
+
+;; Variable references
+(identifier) @name.reference
